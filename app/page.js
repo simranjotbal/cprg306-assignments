@@ -5,8 +5,8 @@ import StudentInfo from "./week-2/student-info";
 export default function Home() {
   return (
     <main>
-      <h1>CPRG 306:Web Development2 - Assignments</h1>
-      <Link  className="underline text-cyan-600 hover:text-pink-300" href="./week-4">week-4
+      <h1> CPRG 306:Web Development2 - Assignments</h1>
+      <Link  className="underline text-cyan-600 hover:text-pink-300" href="./week-5">week-5
       </Link>
     </main>
     
