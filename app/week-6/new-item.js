@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function NewItem({onAddItem}){
+export default function NewItem({onHandleAddItem}){
 
     const [name , setName] = useState("");
 
@@ -10,41 +10,45 @@ export default function NewItem({onAddItem}){
 
     const [category , setCategory] = useState("Produce");
 
+    const generateId = (length = 17) => {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let result = '';
+        for (let i = 0; i< length; i++){
+            result += characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+        return result;
+    }
+
+
     const handleSubmit = (event) =>{
-        //console.dir(event);
+        
         event.preventDefault();
 
-        const item = {
-            id: Math.random().toString(36).substring(2, 9),
-            name,
-            quantity,
-            category
-        };
-
-        
-        
-        onAddItem(item);
+        const newId = generateId();
+        const new_item = {id: newId, name, quantity, category};
+        onHandleAddItem(new_item);
         setName("");
         setQuantity(1);
         setCategory("produce");
 }
 return(
-    <div class="flex justify-start p-4">
+    <main className="flex justify-start items-center mx-8 my-8 w-full">
+    
 
     <form onSubmit= {handleSubmit} className="w-30"  >
     <div>
-        <label>
+        
         <input type="text"
          placeholder="Item name" class="w-full border-5 border-black rounded-lg text-black " 
          value={name}
         onChange={(e) => setName (e.target.value)} required/>
-        </label>
+        
     </div>
 
-    <div class="flex justify-between">
-        <input type="number" class="border-5 border-black rounded-lg  text-black mx-1 my-2" value={quantity} onChange={(e) => setQuantity(Number(e.target.value))} min={1} max={99} required/>
+    <div class="flex justify-between ">
+        <input type="number" class="border-5 border-black rounded-lg  text-black mx-1 my-2" value={quantity} onChange={(e) => setQuantity(Number(e.target.value))} min="1" max="99" required/>
         
-        <label>
+       
         <select value={category} onChange={(e) => setCategory(e.target.value)} class="border-5 border-black rounded-lg text-black mx-1 my-2 ">
             <option value="Produce">Produce</option>
             <option value="dairy">Dairy</option>
@@ -58,12 +62,13 @@ return(
             <option value="Household">Household</option>
             <option value="Other">Other</option>
         </select>
-        </label>
+       
     </div>
+    <div>
     <button type="submit" className="bg-blue-500 w-full text-white font-semibold rounded border-10 border-black">+</button>
+    </div>
 
 </form>
-
-</div>
+    </main>
 );
 }
