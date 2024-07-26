@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main>
       <h1> CPRG 306:Web Development2 - Assignments</h1>
-      <Link  className="underline text-cyan-600 hover:text-pink-300" href="./week-7">week-7
+      <Link  className="underline text-cyan-600 hover:text-pink-300" href="./week-8">week-8
       </Link>
     </main>
     
